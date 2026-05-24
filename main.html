@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configs</title>
+    <style>
+      body {
+        background-color: #ffffff;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        color: #333;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 400px;
+        margin-top: 20px;
+      }
+
+      .config-box {
+        margin-bottom: 30px;
+      }
+
+      /* The "Config" label on top */
+      .label {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      /* Groups the input box and button together */
+      .input-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      /* The box holding your link */
+      input[type="text"] {
+        flex-grow: 1;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        background-color: #f9f9f9;
+        color: #555;
+        outline: none;
+      }
+
+      /* The copy button */
+      button {
+        padding: 12px 18px;
+        background-color: #000000;
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      button:active {
+        background-color: #444444;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="config-box">
+        <span class="label">Config 1</span>
+        <div class="input-group">
+          <input
+            type="text"
+            id="link1"
+            value="vless://572c1a84-850e-4c52-aa18-8e5cf65b9671@198.169.2.1:443?encryption=none&security=tls&sni=relay-t2plvxht.vercel.app&alpn=h2%2Chttp%2F1.1&fp=chrome&type=xhttp&host=relay-t2plvxht.vercel.app&path=%2Fapi&mode=auto&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D#XHTTP-vercel
+"
+            readonly
+          />
+          <button onclick="copyToClipboard('link1', this)">Copy</button>
+        </div>
+      </div>
+
+      <div class="config-box">
+        <span class="label">Config 2</span>
+        <div class="input-group">
+          <input
+            type="text"
+            id="link2"
+            value="vless://572c1a84-850e-4c52-aa18-8e5cf65b9671@198.169.2.65:443?encryption=none&security=tls&sni=relay-t2plvxht.vercel.app&alpn=h2%2Chttp%2F1.1&fp=chrome&type=xhttp&host=relay-t2plvxht.vercel.app&path=%2Fapi&mode=auto&extra=%7B%22xPaddingBytes%22%3A%22100-1000%22%7D#XHTTP-vercel
+"
+            readonly
+          />
+          <button onclick="copyToClipboard('link2', this)">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function copyToClipboard(inputId, buttonElement) {
+        // Get the text field
+        var copyText = document.getElementById(inputId);
+
+        // Select the text field (helps with mobile devices)
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+
+        // Copy the text inside the text field
+        navigator.clipboard
+          .writeText(copyText.value)
+          .then(() => {
+            // Temporarily change the button text to show it worked
+            const originalText = buttonElement.innerText;
+            buttonElement.innerText = "Copied!";
+            buttonElement.style.backgroundColor = "#28a745"; // Green color
+
+            setTimeout(() => {
+              buttonElement.innerText = originalText;
+              buttonElement.style.backgroundColor = "#000000"; // Back to black
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+            alert("Failed to copy. Please copy manually.");
+          });
+      }
+    </script>
+  </body>
+</html>
